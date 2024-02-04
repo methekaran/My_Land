@@ -1,6 +1,6 @@
 module tb_top;
   string inp_array_s = "meeran";//a,n,g,r,m
-  string inp_array_t = "ranmee";
+  string inp_array_t = "kanmee";
   
   int assoc_1[string];
   int assoc_2[string];
@@ -13,10 +13,7 @@ module tb_top;
     else begin
       for(int i=0;i< inp_array_s.len();i++)begin
         assoc_1[inp_array_s[i]]+=1;
-      end
-    
-      for(int j=0;j< inp_array_t.len();j++)begin
-        assoc_2[inp_array_t[j]]+=1;
+        assoc_2[inp_array_t[i]]+=1;
       end
     
       foreach(assoc_1[k])begin
