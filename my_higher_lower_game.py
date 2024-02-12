@@ -1,4 +1,3 @@
-# Import two libraries called game_data and art py files
 import game_data
 import art
 import random
@@ -69,16 +68,17 @@ def my_higher_or_lower_game():
         f"Incorrect option enetered by the user! Your score is {score_count}\n"
       )
     if (user_a_or_b_is_winner == 0):
-      option_B = random.choice(game_data.data)
       temp = option_A
-      option_A = {}
-      option_A = temp
-    else:
+      option_A ={}
       option_A = random.choice(game_data.data)
-      temp = option_B
       option_B = {}
       option_B = temp
-
+    else:
+      temp = option_B
+      option_B = {}
+      option_B = random.choice(game_data.data)
+      option_A = {}
+      option_A = temp
 
 my_higher_or_lower_game()
 
