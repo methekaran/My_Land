@@ -22,19 +22,34 @@ nums = [-1, 0, 3, 5, 9, 12]
 #define the target variable
 target = 9
 index = 0
+l = 0
+r = len(nums) - 1
 
 # search for the target inside the list or an array and return the index of the array/list
-for idx in range(len(nums)):
-    if (nums[idx] == target):
-        index = idx
-        break
+while (l <= r):
+    m = (l + r) // 2  # r=10 l=0 5 +0=5
+    if (nums[m] < target):
+        l = m + 1
+    elif (nums[m] > target):
+        r = m - 1
     else:
-        index = -1
+        index = m
+        break
 
-if (index == -1):
-    print(f"{index}\n")
-else:
-    print(f"{index}\n")
+print(f"{index}\n")
+
+# search for the target inside the list or an array and return the index of the array/list
+#for idx in range(len(nums)):
+#    if (nums[idx] == target):
+#        index = idx
+#        break
+#    else:
+#        index = -1
+
+#if (index == -1):
+# print(f"{index}\n")
+#else:
+#    print(f"{index}\n")
 
 #step 2 once understood the comments then categorize as smaller tasks
 
@@ -46,3 +61,4 @@ else:
 
 ## two more possible solutions are i) doing XOR with every element of the array with target and if any value ==0 means we found else not found
 ##                                ii) creating an associative array or dictionary from the list and then using find_first_index function of the SV
+
