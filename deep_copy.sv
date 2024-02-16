@@ -35,7 +35,7 @@ class my_class;
   function my_class copy();
     copy = new(); // copy is also an object of type my_class
     copy.data = this.data;
-    copy.adr  = adr.copy;
+    copy.adr  = adr.copy; // this will create a new address object for p2 and then copy the start and end addr variables
     return copy;
   endfunction : copy
 endclass : my_class
