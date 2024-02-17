@@ -1,6 +1,9 @@
 // Code your testbench here
 // or browse Examples
 
+//Note : For polymorphism to work or override a function/task should have same number of arguments and the name of the method
+//if arguments don't match then the compilation error would be there
+
 package my_pkg;
 
 import uvm_pkg::*;
