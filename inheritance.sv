@@ -38,5 +38,6 @@ module tb_top;
     b = c;// now B & C are at same address location
     $display("B's address:%0h && C's address:%0h",b,c);
     $display("B's N is :%d && C's N is :%d",b.N,c.N);// Class Base's variable N is at a location X Class Child's variable N is at a location Y
+    //This still displays class B's N because the attribute is getting accessed based on the type of the handle rather than object's handle
   end
 endmodule : tb_top
