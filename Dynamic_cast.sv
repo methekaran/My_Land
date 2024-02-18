@@ -31,19 +31,23 @@ module tb_top;
   
   initial begin
     C = new();//created memory for C
-    B = new();
     
-   
-    // B = C; would cast to make it work because then they both start referring to the same memory location  and types would match
-
-    $cast(C,B);//Comilation error because you never did up-casting for downcasting to work
+    
+    B=C;//assigning child class object to parent class is allowed
+    
+    //C=B; not allowed direct assignment
+    
+    //For downcasting to work we should done an up-casting for matching the types
+    $cast(C,B);
+    
+   // SystemVerilog provides a dynamic $cast function that checks to see if the assignment is compatible & if yes, its does assign the Handle back.
     
 	/*    Error-[DCF] Dynamic cast failed
 	testbench.sv, 36
   	Casting of source class type 'my_pkg.base' to destination class type 
   	'my_pkg.child' failed due to type mismatch.
   	Please ensure matching types for dynamic cast*/
-    
+    B.display();
     C.display();
     
   end
