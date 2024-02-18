@@ -18,17 +18,11 @@ import random
 #b. The prompt should show every time action has completed, e.g. once the drink is
 #dispensed. The prompt should show again to serve the next customer.
 
-user_input = input("what would you like? espresso/latte/cappucino\n")
-flag = 0
 rem_water = 300
 rem_coffee = 100
 rem_milk = 200
 rem_money = 0
-
-#2. Turn off the Coffee Machine by entering “off” to the prompt.
-#a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off
-#the machine. Your code should end execution when this happens.
-on_or_off = "on"
+user_input = ""
 
 
 def check_resource(min_water, min_coffee, min_milk, rem_water, rem_coffee,
@@ -48,9 +42,79 @@ def check_resource(min_water, min_coffee, min_milk, rem_water, rem_coffee,
 
 def print_report(rem_water, rem_milk, rem_coffee, rem_money):
     print(
-        f"Water: {rem_water}ml, Milk:  {rem_milk}ml,Coffee: {rem_coffee}g,Money:  {rem_money}\n"
+        f"Water: {rem_water}ml, Milk:  {rem_milk}ml,Coffee:     {rem_coffee}g,Money:    {rem_money}\n"
     )
 
+
+while (user_input != "off"):
+    user_input = input("what would you like? espresso/latte/cappucino\n")
+    flag = 0
+
+    if (user_input == "report"):
+        print_report(rem_water, rem_milk, rem_coffee, rem_money)
+    elif (user_input == "espresso"):
+        flag = check_resource(50, 18, 0, rem_water, rem_coffee, rem_milk)
+    elif (user_input == "latte"):
+        flag = check_resource(200, 24, 150, rem_water, rem_coffee, rem_milk)
+    elif (user_input == "cappucino"):
+        flag = check_resource(250, 24, 100, rem_water, rem_coffee, rem_milk)
+
+    if (flag == 1 or user_input == "on"):
+        print(f"please insert coins\n")
+        num_of_quaters = int(input("Please insert num_of_quaters\n"))
+        num_of_dimes = int(input("please insert num_of_dimes\n"))
+        num_of_nickels = int(input("please insert num_of_nickels\n"))
+        num_of_pennis = int(input("please insert num_of_pennies\n"))
+        total_money = (num_of_quaters * 0.25) + (num_of_dimes * .10) + (
+            num_of_nickels * 0.05) + (num_of_pennis * 0.01)
+        if (total_money >= 3.00 and user_input == "cappucino"):
+            rem_coffee -= 24
+            rem_milk -= 100
+            rem_water -= 250
+            if (total_money > 3.00):
+                rem_money = total_money - 3.00
+            else:
+                rem_money = total_money
+            print(
+                f"Thanks here is your change {total_money-3.00} and your coffee!!!\n"
+            )
+            print_report(rem_water, rem_milk, rem_coffee, rem_money)
+        elif (total_money >= 2.50 and user_input == "latte"):
+            print(
+                f"Thanks here is your change {total_money-2.50} and your coffee!!!\n"
+            )
+            rem_coffee -= 24
+            rem_milk -= 150
+            rem_water -= 200
+            if (total_money > 2.50):
+                rem_money = total_money - 2.50
+            else:
+                rem_money = total_money
+            print_report(rem_water, rem_milk, rem_coffee, rem_money)
+        elif (total_money >= 1.5 and user_input == "espresso"):
+            print(
+                f"Thanks here is your change {total_money-1.5} and your coffee!!!\n"
+            )
+            rem_coffee -= 18
+            rem_water -= 50
+            if (total_money > 1.50):
+                rem_money = total_money - 1.50
+            else:
+                rem_money = total_money
+            print_report(rem_water, rem_milk, rem_coffee, rem_money)
+        elif (user_input == "report"):
+            print_report(rem_water, rem_milk, rem_coffee, rem_money)
+        else:
+            print("Sorry that's not enough money money refunded!!!\n")
+    elif (flag == 1 or user_input == "off"):  ## on_or_off
+        rem_coffee = 100
+        rem_milk = 200
+        rem_water = 300
+        #make_coffee
+
+#2. Turn off the Coffee Machine by entering “off” to the prompt.
+#a. For maintainers of the coffee machine, they can use “off” as the secret word to turn off
+#the machine. Your code should end execution when this happens.
 
 #3. Print report.
 #a. When the user enters “report” to the prompt, a report should be generated that shows
@@ -59,67 +123,6 @@ def print_report(rem_water, rem_milk, rem_coffee, rem_money):
 #Milk: 50ml
 #Coffee: 76g
 #Money: $2.5
-if (user_input == "report"):
-    print_report(rem_water, rem_milk, rem_coffee, rem_money)
-elif (user_input == "espresso"):
-    flag = check_resource(50, 18, 0, rem_water, rem_coffee, rem_milk)
-elif (user_input == "latte"):
-    flag = check_resource(200, 24, 150, rem_water, rem_coffee, rem_milk)
-elif (user_input == "cappucino"):
-    flag = check_resource(250, 24, 100, rem_water, rem_coffee, rem_milk)
-
-if (flag == 1 and on_or_off == "on"):
-    print(f"please insert coins\n")
-    num_of_quaters = int(input("Please insert num_of_quaters\n"))
-    num_of_dimes = int(input("please insert num_of_dimes\n"))
-    num_of_nickels = int(input("please insert num_of_nickels\n"))
-    num_of_pennis = int(input("please insert num_of_pennies\n"))
-    total_money = (num_of_quaters * 0.25) + (num_of_dimes * .10) + (
-        num_of_nickels * 0.05) + (num_of_pennis * 0.01)
-    if (total_money >= 3.00 and user_input == "cappucino"):
-        rem_coffee -= 24
-        rem_milk -= 100
-        rem_water -= 250
-        if (total_money > 3.00):
-            rem_money = total_money - 3.00
-        else:
-            rem_money = total_money
-        print(
-            f"Thanks here is your change {total_money-3.00} and your coffee!!!\n"
-        )
-        print_report(rem_water, rem_milk, rem_coffee, rem_money)
-    elif (total_money >= 2.50 and user_input == "latte"):
-        print(
-            f"Thanks here is your change {total_money-2.50} and your coffee!!!\n"
-        )
-        rem_coffee -= 24
-        rem_milk -= 150
-        rem_water -= 200
-        if (total_money > 2.50):
-            rem_money = total_money - 2.50
-        else:
-            rem_money = total_money
-        print_report(rem_water, rem_milk, rem_coffee, rem_money)
-    elif (total_money >= 1.5 and user_input == "espresso"):
-        print(
-            f"Thanks here is your change {total_money-1.5} and your coffee!!!\n"
-        )
-        rem_coffee -= 18
-        rem_water -= 50
-        if (total_money > 1.50):
-            rem_money = total_money - 1.50
-        else:
-            rem_money = total_money
-        print_report(rem_water, rem_milk, rem_coffee, rem_money)
-    elif (user_input == "report"):
-        print_report(rem_water, rem_milk, rem_coffee, rem_money)
-    else:
-        print("Sorry that's not enough money money refunded!!!\n")
-elif (flag == 1 or on_or_off == "off"):  ## on_or_off
-    rem_coffee = 100
-    rem_milk = 200
-    rem_water = 300
-    #make_coffee
 
 #4. Check resources sufficient?
 #a. When the user chooses a drink, the program should check if there are enough
