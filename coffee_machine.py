@@ -1,23 +1,4 @@
 import random
-#Step 1 Write comments on what steps needs to be done for a problem statement
-
-#create an input array or list
-
-#define the target/output variable
-
-#step 2 once understood the comments then categorize as smaller tasks
-
-#step 3 write smaller and simpler tasks into code
-
-#step 4 read your code and find any typos or errors if any
-
-#step 5 run the code
-
-#1. Prompt user by asking “What would you like? (espresso/latte/cappuccino):”
-#a. Check the user’s input to decide what to do next.
-#b. The prompt should show every time action has completed, e.g. once the drink is
-#dispensed. The prompt should show again to serve the next customer.
-
 rem_water = 300
 rem_coffee = 100
 rem_milk = 200
@@ -72,7 +53,7 @@ while (user_input != "off"):
             rem_milk -= 100
             rem_water -= 250
             if (total_money > 3.00):
-                rem_money = total_money - 3.00
+                rem_money = round(total_money - 3.00, 2)
             else:
                 rem_money = total_money
             print(
@@ -87,7 +68,7 @@ while (user_input != "off"):
             rem_milk -= 150
             rem_water -= 200
             if (total_money > 2.50):
-                rem_money = total_money - 2.50
+                rem_money = round(total_money - 2.50, 2)
             else:
                 rem_money = total_money
             print_report(rem_water, rem_milk, rem_coffee, rem_money)
@@ -98,7 +79,7 @@ while (user_input != "off"):
             rem_coffee -= 18
             rem_water -= 50
             if (total_money > 1.50):
-                rem_money = total_money - 1.50
+                rem_money = round(total_money - 1.50, 2)
             else:
                 rem_money = total_money
             print_report(rem_water, rem_milk, rem_coffee, rem_money)
