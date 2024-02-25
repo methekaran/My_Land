@@ -31,6 +31,7 @@ def draw_complex_shape(inp_list):
 
 def draw_random_walk(inp_c_list,dir_dict):
     angle=0
+    my_turt.speed(10)
     for i in range(50):
         c_l = random.choice(inp_c_list)
         angle = random.choice(dir_dict)
