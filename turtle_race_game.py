@@ -1,4 +1,6 @@
 
+
+
 import random
 
 from turtle import Turtle
@@ -18,7 +20,7 @@ for a_c in range(len(color_l)):
     turt.append(Turtle("turtle"))
     turt[a_c].color(color_l[a_c])
     turt[a_c].penup()
-    turt[a_c].goto(x=-230,y=-100+(a_c*50))
+    turt[a_c].goto(x=-230,y=-100+(a_c*30))
 
 while is_race_on:
     for idx in range(len(turt)):
@@ -28,9 +30,10 @@ while is_race_on:
             is_race_on=False
             if(color_l[idx]==user_color):
                 print(f"You Won :) the Race {color_l[idx]}\n")
+                break
             else:
                 print(f"You Lost!!! :( The winner of the Race is {color_l[idx]} \n")
+                is_race_on=False
+                break
 
 screen.exitonclick()
-
-#W-> FORWAD, S-> BACKWARD, A-COUNTER CLK, D->CLOCK WISE, C-> CLEAR SCREEN
