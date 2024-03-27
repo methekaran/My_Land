@@ -6,7 +6,9 @@ head = [1, 2, 3, 4, 5, 6]
 #output = head[::-1]
 output = []
 
-for idx in range((len(head) - 1), 0, -1):
+#Note : Stop function will not see value of 0th element, hence -1 to observe the 0th element of the nums array
+                  start         ,stop,incr/decr
+for idx in range((len(head) - 1), -1, -1):
     output.append(head[idx])
 
 print(f"{output}\n")
