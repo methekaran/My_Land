@@ -2,6 +2,18 @@
 
 //tb top
 
+/*
+Statement: Write a constraint for 10 elements with even index and odd index elements sum accounts to 10
+class test;
+  rand bit [7:0] arr[];
+  constraint sz{
+    arr.size() == 10;
+  }
+  constraint un {
+    arr.sum() with (int'((item.index%2 == 0) ? item%2 == 0 : item%2 != 0)) == 10;
+  }*/ 
+
+
 package my_pkg;
 
 
