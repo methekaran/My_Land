@@ -116,4 +116,9 @@ module my_dut(my_intf vif);
 endmodule : my_dut
 
 // Additional properties
+        //data integrity check
+/*property p_data_a;
+  logic[31:0] data_in;
+  @(posedge vif.clk) disable iff(!vif.reset) ($rose(a),data_in=vif.datain) |-> ##3 (vif.dataout=data_in);
+endproperty : p_data_a*/
         
