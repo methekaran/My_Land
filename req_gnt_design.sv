@@ -85,6 +85,78 @@ module my_dut(my_intf vif);
   endproperty : p_req_gnt_count
   
   property p_req_gnt_rose;
+    @(posedge vif.clk) disable iff(!vif.reset) $rose(vif.req) ##1 $rose(vif.gnt) |-> (vif.req===0)[->1] ##1 $fell(vif.gnt);
+  endproperty : p_req_gnt_rose
+  
+  property p_gnt_one_h;
+    @(posedge vif.clk) disable iff(!vif.reset) $rose(vif.req) |=> $onehot(vif.gnt);
+  endproperty : p_gnt_one_h
+  
+  p_one_h_chk : assert property(p_gnt_one_h);
+  
+  
+    p_req_gnt_chk_r : assert property(p_req_gnt_rose)
+  $display("time:%t The assertion passed!!!",$time);
+  else 
+    $error("time :%t It failed req=%d,gnt=%d",$time,vif.req,vif.gnt);
+      
+      p_req_gnt_cnt_chk: assert property (p_req_gnt_count)
+        $display("REQ_GNT_CHK: passed");
+        else
+          $error("Count assert failed...");
+   
+endmodule : my_dut
+
+// Additional properties
+//data integrity check
+/*property p_data_a;
+  logic[31:0] data_in;
+  @(posedge vif.clk) disable iff(!vif.reset) ($rose(a),data_in=vif.datain) |-> ##3 (vif.dataout=data_in);
+endproperty : p_data_a*/
+
+
+
+
+// Code your design here
+// Code your design here
+interface my_intf(input bit clk);
+  logic reset;
+  logic req;
+  logic gnt;
+  
+  //modport dut(input reset,input req,output gnt);
+  //modport tb(input gnt,output req, output reset);
+endinterface : my_intf
+
+module my_dut(my_intf vif);
+  
+  always_ff@(posedge vif.clk or negedge vif.reset)begin
+    if(!vif.reset)begin
+      vif.gnt <=0;
+    end
+    else begin
+      if(vif.req===1'b1)begin
+        vif.gnt <= vif.req;
+        $strobe("1.time:%t, gnt=%d,req=%d",$time,vif.gnt,vif.req);
+      end
+      else begin
+        vif.gnt <=0;
+        $strobe("2.time:%t, gnt=%d,req=%d",$time,vif.gnt,vif.req);
+      end
+    end
+  end
+ 
+ 
+  
+  property p_req_gnt_count;
+   int req_cnt=0;
+   int gnt_cnt=0;
+    @(posedge vif.clk) disable 
+    iff(!vif.reset) ($rose(vif.req),req_cnt++,$display("r_time:%t req_cnt=%d",$time,req_cnt)) ##1 
+    ($rose(vif.gnt),gnt_cnt++,$display("g_time :%t gnt_cnt=%d",$time,gnt_cnt)) |-> (req_cnt===gnt_cnt); 
+  endproperty : p_req_gnt_count
+  
+  property p_req_gnt_rose;
     @(posedge vif.clk) disable iff(!vif.reset) $rose(vif.req) |-> ##1 $rose(vif.gnt);
   endproperty : p_req_gnt_rose
   
