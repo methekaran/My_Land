@@ -20,7 +20,9 @@ class my_cls;
   
   //1st approach by using sum method of systemverilog
  // constraint sum_c {
-  //   my_arr.sum()==100; 1st method uses my_arr
+       
+  //      my_array.sum() with (int'(item))==100; First approach NOTE: always use sum with method for generating sum of all the elements
+
  // }
   
   //2nd approach below without using sum method
