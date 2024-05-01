@@ -47,8 +47,8 @@ module tb_top;
   	Casting of source class type 'my_pkg.base' to destination class type 
   	'my_pkg.child' failed due to type mismatch.
   	Please ensure matching types for dynamic cast*/
-    B.display();
-    C.display();
+	  B.display();//I am a Child class
+	  C.display(); // I am a child class
     
   end
   
