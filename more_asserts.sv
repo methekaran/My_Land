@@ -26,3 +26,9 @@ endproperty : p_clk_gate_chk
 property p_rst_low_check;
   @(posedge clk) $rose(rstn) |-> (rstn===1) throughout !rstn[->1];
 endproperty : p_rst_low_check
+
+//assumption for every data inp there is a data out change it comes after 1 clock cycle
+Property p_data_integrity_check;
+bit[31:0] local_datain;
+@(posedge clk) disable iff(!rstn) (1,local_datain=datain) |=> (dataout===local_datain);
+Endproperty : p_data_integrity_check
