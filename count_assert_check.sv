@@ -11,6 +11,6 @@ endproperty : p_write_data_chk
   
 //If valid is asserted, it should remain high until ready is received
 property p_ready_valid_chk;
-  @(posedge clk) disable iff(!rstn) $rose(valid) |-> (valid===1) throughout ready[->1] ##1 (valid===0);
+  @(posedge clk) disable iff(!rstn) $rose(valid) && (!ready) |-> (valid===1) throughout ready[->1] ##1 (valid===0);
 endproperty : p_ready_valid_chk
 
