@@ -82,3 +82,79 @@ initial begin
 
     $display("the NEXT Statement ... ");
   end 
+
+
+package my_pkg;
+import uvm_pkg::*;
+`include "uvm_macros.svh"
+
+class my_cls;
+  int abc=19;
+endclass : my_cls
+endpackage : my_pkg
+
+module tb_top;
+  import my_pkg::*;
+  bit clk;
+  int lst[5] = '{1,2,3,4,5};
+  uvm_event finish_event;
+  std::process p1,p2,p3;
+  std::process p1_q[$];
+  
+  initial begin
+  /*
+  i) Forever block inside the fork join will create one thread with begin-end
+  and it will be active or running forever throughout the simulation until the simulation ends
+  
+  ii) Whereas fork join/any/none inside the forever begin block will create indefinate threads which will be active throughout the simulation
+  */
+    //p1=new();
+      fork
+        forever begin
+        $display("The thread started:%t",$time);
+        p1 = std::process::self();
+        #10;
+          $display("time:%t Process p1 status is:%s",$time,p1.status().name);
+          p1_q.push_back(std::process::self());
+        end
+        begin
+          #10;
+          p2=std::process::self();
+        end
+      join_any
+      disable fork;
+    $display("process 2 status:%s",p2.status.name());
+      wait fork;
+        $display("After wait fork...!!! size=%d",p1_q.size());
+        foreach(p1_q[a])begin
+          $display("time=%t: size=%d and status",$time,p1_q.size(),p1_q[a].status.name);
+        end
+  end
+        
+   initial begin
+     forever begin
+       fork
+         begin
+           p3 = std::process::self();
+           #10;
+           $display("time:%t Process P3 status is :%s",$time,p3.status.name());
+         end
+       join
+     end
+   end
+  
+  initial begin
+    forever begin
+      #5 clk =~clk;
+    end
+  end
+        
+        
+  
+  
+ initial begin
+   #200 $finish();
+ end
+  
+endmodule : tb_top
+        
