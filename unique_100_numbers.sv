@@ -99,4 +99,49 @@ endpackage:my_pkg
           end
         endmodule : tb_top*/
 
+      //Generate unique numbers without using unique keyword
+//1.create a variable with rand 
+//2. can take help of a queue to store generate numbers
+//3. Proof read the problem ans solution
+
+class my_class;
+  rand bit[7:0] unique_numbers;
+  bit[7:0] unique_q[$];
+  constraint c_unique_num {
+    !(unique_numbers inside {unique_q});
+  }
+
+  function void pre_randomize();
+   if(unique_q.size()==256)begin
+    unique_q = {};
+   end
+  endfunction : pre_randomize
+
+  function void post_randomize();
+   unique_q.push_back(unique_numbers);
+  endfunction : post_randomize
+endclass : my_class
+
+//second approach can be with a queue if we are asked to generate an array of unique numbers
+class my_class;
+  rand bit[7:0] unique_num_q[$];
+//O(N^2)
+  constraint c_unique_num_q{
+    unique_num_q.size()==256;
+    foreach(unique_num_q[i]){
+     // foreach(unique_num_q[j]){
+     //   if(i!=j){
+        if(i>0){  
+          unique_num_q[i]>unique_num_q[i-1];
+        }
+       // }
+      //}
+    }
+  }
+
+  function void post_randomize();
+    unique_num_q.shuffle();
+  endfunction : post_randomize
+endclass : my_class
+
 
