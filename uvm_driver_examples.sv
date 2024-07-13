@@ -74,6 +74,7 @@ class my_drv extends uvm_driver#(my_seq_item);
       begin
         if(rst_cfg.rst==0)begin
           seq_item_port.get_next_item(req);
+		@(posedge vif.clk);
             vif.resetn<=1'b1;
             vif.din <= req.din;
             vif.din_en <= req.din_en;
