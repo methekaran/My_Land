@@ -32,3 +32,17 @@ Property p_data_integrity_check;
 bit[31:0] local_datain;
 @(posedge clk) disable iff(!rstn) (1,local_datain=datain) |=> (dataout===local_datain);
 Endproperty : p_data_integrity_check
+
+//https://verificationacademy.com/forums/t/sv-assertion-for-clock-gating-reset-check/32495/2
+  //clock gating assertion
+//take a reference clock and write an assertion based on clock
+property p_clk_gate();
+  @(posedge ref_clk) disable iff(!rstn) $fell(clk_gate_en) |-> !clk throughout (!clk_gate_en)[->1];
+endproperty : p_clk_gate
+
+p_assert : assert(p_clk_gate);
+
+//reset assertion 
+property p_reset_assert();
+  @(posedge clk) $fell(rst_en) |-> !rst throughout (rst_en)[->1];
+endproperty : p_reset_assert
