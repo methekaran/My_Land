@@ -7,5 +7,5 @@ ii. if a is high b should be low when c  is high
 
 //This should work I think  
 property p_a_b_c;
-  @(posedge clk) disable iff(!rst) $rose(a) |-> b throughout c[->1];
+  @(posedge clk) disable iff(!rst) $rose(a) |-> b throughout (!c[->1]);
 endproperty : p_a_b_c
