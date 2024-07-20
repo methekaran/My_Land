@@ -17,9 +17,9 @@ property glitch_p;
      (1, first_change = $realtime) |=> (($realtime - first_change) >= duration); // [*1:$];
 Endproperty   ap_glitch_p: assert property(glitch_p); 
 
-//clock gating assertion
+  //clock gating assertion making sure clk goes low within [1:2] clock cycles of clk_en goes low
 property p_clk_gate_chk;
-  @(posedge ref_clk) disable iff(!rstn) $fell(clk_en) |-> !clk throughout clk_en[->1];
+  @(posedge ref_clk) disable iff(!rstn) $fell(clk_en) ##[1:2] !clk |-> !clk throughout clk_en[->1];
 endproperty : p_clk_gate_chk
 
 //reset must remain high if this is a must/strict requirement then only application for assertion check
