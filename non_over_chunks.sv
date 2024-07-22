@@ -25,7 +25,7 @@ class non_ov_addr;
   constraint size_q_c {
     foreach(size_q[j]){
       size_q[j] == end_addr_q[j] - start_addr_q[j];
-      size_q[j] inside {[0:100]};
+     size_q[j] inside {[1:100]};
     }
   }
       
