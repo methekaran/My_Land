@@ -10,7 +10,7 @@ class my_pixel;
       (row>0) -> pixel_var[row-1][col]==ON;
       (col>0) -> pixel_var[row][col-1]==ON;
      (row<`ROW-1) pixel_var[row+1][col]==ON;
-     (col<`COL-1) pixel_var[row+1][col]==ON;
+     (col<`COL-1) pixel_var[row][col+1]==ON;
     }
   }
 }
