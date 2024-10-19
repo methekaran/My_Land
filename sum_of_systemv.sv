@@ -32,7 +32,7 @@ class my_cls;
   
   
   function void post_randomize();
-    if(an_ele < sum_to_be)begin
+    if(an_ele <= sum_to_be)begin
       sum_to_be= sum_to_be - an_ele;
     end
     else begin
