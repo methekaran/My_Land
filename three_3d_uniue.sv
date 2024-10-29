@@ -15,7 +15,7 @@ class A;
 
     function void post_randomize();
       foreach (arr[i,j,k]) begin
-          arr[i][j][k] = temp[i*9+j*3+k];
+        arr[i][j][k] = temp[i*9+j*3+k]; // The index should be reference as last two indices 3*3*i + j * last indices(3) + last index variable
         $display("Array value is:%d,i=%d,j=%d,k=%d",arr[i][j][k],i,j,k);
       end
     endfunction
