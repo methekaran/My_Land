@@ -30,17 +30,20 @@ flag = 0
 #where you check that number if it's only divisible by itself
 #Note below input =15 as python for loop runs between (2,16-1=15)
 
-for j in range(2, input):
-    if (input % j == 0):
-        flag = 0
-        break
-    #print(f"outside {j}=\n")
+num = 11
+# Negative numbers, 0 and 1 are not primes
+if num > 1:
+  
+    # Iterate from 2 to n // 2
+    for i in range(2, (num//2)+1):
+      
+        # If num is divisible by any number between
+        # 2 and n / 2, it is not prime
+        if (num % i) == 0:
+            print(num, "is not a prime number")
+            break
     else:
-        flag = 1
-        #print(f"inside the else and {a_num}\n")
-        #output.append(a_num)
-
-if (flag == 1):
-    print(f"This is a prime number {input}\n")
+        print(num, "is a prime number")
 else:
-    print(f"Not a prime number {input}\n")
+    print(num, "is not a prime number")
+
