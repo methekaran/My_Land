@@ -9,7 +9,7 @@ package my_pkg;
 // create a queue of start_addr+end_address range 
 
 //Generate address of byte aligned, 16bit aligned, 32-bit aligned,64bit aligned
-
+//for 32bit alignd addresses generated is 0,4,8,C
 import uvm_pkg::*;
 `include "uvm_macros.svh"
 
@@ -20,6 +20,7 @@ class my_cls;
   int  gen_addr_range[$];
   
   constraint an_address_c {
+    address[1:0]==0;//this will genernerate 32-bit aligned for 64-bit aligned address[3:0]==0;
     address inside {[1:4000]};
     !(address inside {gen_addr_range});
     size inside {[20:50]};
