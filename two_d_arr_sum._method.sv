@@ -1,4 +1,4 @@
-//2D sum methods for row == 100 & col==100
+//2D sum methods for row's sum== 100 & col's sum==100
           
 class my_2d_sum;
   
@@ -25,3 +25,14 @@ class my_2d_sum;
   
 
 endclass : my_2d_sum
+
+//Generate a sum of all 2d elements to be equal to 100
+// refer to this one: https://www.edaplayground.com/x/tX9
+    class my_arr_sum;
+               rand bit[7:0] my_2d_arr_sum[5][4];
+               
+               
+               constraint my_2d_arr_sum_c {
+                   my_2d_arr_sum.sum() with (int'(item.sum() with (int'(item))))==100;
+               }
+             endclass : my_arr_sum
