@@ -4,5 +4,5 @@
 //ii) if gnt is high req should never be asserted
 
 property req_gnt_not_happen;
-  @(posedge clk) disable iff(!rstn) $rose(REQ) |=> (GNT) throughout !(REQ); 
+  @(posedge clk) disable iff(!rstn) $rose(REQ) |=> (REQ) throughout GNT[->1]; 
 endproperty : req_gnt_not_happen
