@@ -14,10 +14,12 @@ property chk_duty_cycle(int tolerance,realtime half_duty_cycle);
                  ($realtime-current_time) <= (half_duty_cycle+((half_duty_cycle*tolerance)/100));                                    
 endproperty : chk_duty_cycle
 
+
+
 //Notice the change between above and below assertion
-property chk_full_duty_cycle(int tolerance,realtime full_duty_cycle);
+property chk_period_cycle(int tolerance,realtime full_period);
   realtime current_time;
   @(posedge clk) (1,current_time=$realtime()) |=> 
-  ($realtime-current_time) >= (full_duty_cycle - ((full_duty_cycle*tolerance)/100)) &&
-  ($realtime-current_time) <= (full_duty_cycle + ((full_duty_cycle*tolerance)/100));                                    
+  ($realtime-current_time) >= (full_period - ((full_period*tolerance)/100)) &&
+  ($realtime-current_time) <= (full_period + ((full_period*tolerance)/100));                                    
 endproperty : chk_full_duty_cycle
