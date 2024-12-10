@@ -87,10 +87,10 @@ End task : run_phase
 
 Virtual task flush_all();
    Foreach(exp_assoc_arr[j])begin
-     Exp_assoc_arr.delete(i);
+    Exp_assoc_arr.delete(j);
   end
   Foreach(act_assoc_arr[j])begin
-     act_assoc_arr.delete(i);
+   act_assoc_arr.delete(j);
   end
 End task : flush_all
 Endless : my_scb
