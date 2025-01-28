@@ -40,3 +40,15 @@ def climbing_stairs(n):
 
 output = climbing_stairs(n)
 print(f"The final result is {output}\n")
+
+######## sv code below or another approach  #############
+Int prev,sum;
+Int num=1;
+Initial begin
+  for(int I=0;i<=n;i++)begin
+    Sum = prev+num; //1, 2, 3
+    prev=num;  // 1 // 1 // 2 
+    num=sum;   //1   //2 //3
+  end
+end
+
