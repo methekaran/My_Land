@@ -6,20 +6,33 @@ module tb;
   int a_3[$] = {};
   int max_size;
 
-initial begin
-    max_size = a_1.size()>a_2.size() ? a_1.size() : a_2.size();
-    
-    for (int i=0; i< max_size; i++)begin//0,1,2,3,4
-      if(i <= a_1.size()-1)begin
-        a_3.push_back(a_1[i]);
-      end
-      if(i <= a_2.size()-1)begin
-        a_3.push_back(a_2[i]);
-      end
-    end
-    foreach(a_3[j])begin
-      $display("A_3 value:%d",a_3[j]);
-    end
+
+Function int merge_sort_array(int ary1[$],int ary2[$]);
+  
+
+   Int I,j;
+
+   //while loop to take all elements from 2 Ary
+   While(I<ary1.size() && j<ary2.size())begin
+       If(ary1[I]<=ary2[j]) begin
+          Ary3.push_back(ary1[I++];
+       end
+       Else begin
+          Ary3.push_back(ary2[j++];
+       end
+   end
+   while(I < ary1.size())begin
+     Ary3.push_back(Ary[I++];
+   End
+  While(j <ary2.size())begin
+     Ary3.push_back(ary2[j++];
   end
+
+  Return ary3;
+End function : merge_sort_array
+
+ initial begin
+  a_3 = merge_sort_array(a_1,a_2);
+ end
 
 endmodule : tb
