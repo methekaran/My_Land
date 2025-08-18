@@ -31,7 +31,7 @@ module tb_top;
  O(n^2)
  
  initial begin
-  for(int i=0; i<$size(nums)-1;i++)begin
+  for(int i=0; i<$size(nums);i++)begin
     for(int j=i+1; j<$size(nums);j++)begin
       if(nums[i]+nums[j]==target)begin
         out_q.push_back(i);
