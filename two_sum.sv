@@ -47,3 +47,28 @@ module tb_top;
   end*/
   
 endmodule : tb_top
+
+/* can be checked
+For(int I=0; I < n; I ++)begin 
+   For(int j=I+1;j<n;j++)begin                  // I=0 j=1, I=0 j=2,i=0 j=3
+      If(arr[i]+arr[j]==target)begin             // I=1,j=2, I=1, j=3
+         Out_q.push_back(i);                    // I=2,j=3 break
+         Out_q.push_back(j);
+      end
+   End
+end
+
+Int my_assoc[int];
+Int out_q[$];
+
+For(int I=0;i<array.size();I++)begin
+   If(my_assoc.exists(target-array[I])begin
+        Out_q = my_assoc.find_index with int’(item) == int’(target-array[I]);//2
+        Out_q.push_back(i);//3
+        return out_q;
+   end  
+   Else begin
+      My_assoc[I] = array[I];  // 2 : 0, 7 : 1, 11 : 2, 
+   end
+end
+*/
