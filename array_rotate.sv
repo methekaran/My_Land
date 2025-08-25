@@ -8,10 +8,10 @@ class my_2d_arr;
        my_2d[i][j] inside {[0:100]};
      }
      foreach(out_arr[row,col]){
-       out_arr[col][`ROW-row-1] == my_2d[row][col];  
+        out_arr[col][`ROW-row-1] == my_2d[row][col];  //clock wise
      }
      foreach(out_arr_2[row,col]){
-       out_arr_2[`COL-col-1][row]==my_2d[row][col];
+        out_arr_2[`COL-col-1][row]==my_2d[row][col]; //counter clock wise
      }
    }
        
