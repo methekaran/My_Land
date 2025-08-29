@@ -3,7 +3,7 @@ module m1;
     rand bit [3:0] array[5][5];
     constraint c1{
       foreach (array[a,b])
-        if (a == $size(array)-b-1)
+        if (a+b == $size(array)-1)
           array[a][b] == '0;
         else
           array[a][b] != '0;
