@@ -32,9 +32,10 @@ module tb_top;
   
   initial begin
     while(a_num>0)begin
-      remainder = a_num % 10;
-      final_num = remainder + 10*final_num;
-      a_num = a_num / 10;
+      remainder = a_num % 10; // rem=333%10 =3  ; 33%10 = 3; 3%10=3
+      final_num = remainder + 10*final_num; // 3 ; 3*10+3=33; 33*10+3=333
+      a_num = a_num / 10; // 333/10=33 ;3 ; 0
+      
       $display("Final num:%d",final_num);
     end
     
