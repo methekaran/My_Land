@@ -53,3 +53,58 @@ module tb_top;
   end
   
 endmodule : tb_top
+
+// Code your testbench here
+// or browse Examples
+/*
+package my_pkg;
+  import uvm_pkg::*;
+  `include "uvm_macros.svh" 
+   
+   class my_base_cls;
+     int addr;
+     function new(int addr);
+       this.addr =addr;
+     endfunction :new
+     
+     virtual function void display();
+       $display("My Base address =%0h",addr);
+     endfunction : display
+   endclass : my_base_cls
+
+class my_child_cls extends my_base_cls;
+   int data;
+  
+  function new(int addr,int data);
+    super.new(addr);
+     this.data=data;          
+  endfunction : new
+               
+  function void display();
+    $display("My child class address=%0h & data=%0h",addr,data);               
+  endfunction : display
+endclass : my_child_cls
+endpackage : my_pkg
+               
+               module tb_top;
+                 import my_pkg::*;
+                 
+                 my_base_cls b_cls;
+                 my_child_cls c_cls;
+                 
+                 initial begin
+                   b_cls=new('h1000);
+                   c_cls=new('h2000,'hdeadbeef);
+                   
+                   b_cls = c_cls;// assigning child class handle to base class then child class and base class pointing to same memory location hence it will display the c_cls.address=2000 if we don't assign the child handle to base class then it would have displayed 1000
+                   if($cast(c_cls,b_cls))begin
+                     `uvm_info("TB",$sformatf("Cast worked!!!"),UVM_LOW)
+                   end
+                   else begin
+                     `uvm_info("TB",$sformatf("Cast didn't work!!!"),UVM_LOW)
+                   end
+                   b_cls.display(); 
+                   c_cls.display();
+                 end
+               endmodule : tb_top
+*/
