@@ -1,6 +1,6 @@
  
                           class my_sum;
-                            rand bit[7:0] my_var[20];
+                            rand bit my_var[20];
                             
                             constraint my_var_c {
                               my_var.sum() with (int'(item==1))==10;
