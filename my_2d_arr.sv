@@ -36,7 +36,7 @@ class my_cls;
   constraint my_var_c {
     foreach(my_var[i,j])
     {
-        my_var.sum() with (int'(item)) < MAX_SUM;  
+      my_var.sum() with (int'(item.sum() with (int'(item))))<=MAX_SUM;
     }
   }
 endclass : my_cls
