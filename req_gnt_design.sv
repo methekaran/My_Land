@@ -89,7 +89,7 @@ module my_dut(my_intf vif);
   endproperty : p_req_gnt_rose
   
   property p_gnt_one_h;
-    @(posedge vif.clk) disable iff(!vif.reset) $rose(vif.req) |=> $onehot(vif.gnt);
+    @(posedge vif.clk) disable iff(!vif.reset) $rose(vif.req) |=> $onehot0(vif.gnt);
   endproperty : p_gnt_one_h
   
   p_one_h_chk : assert property(p_gnt_one_h);
