@@ -92,6 +92,36 @@ int add_in_middle(struct node *head,int loc){
   return 0;
 }
 
+int remove_a_node(struct node *head,int loc){
+	struct node *local_head=NULL;
+  	struct node *prev_node=NULL;
+  
+  	int total_size=0;
+  
+  	//malloc
+  	local_head=(struct node*)malloc(sizeof(struct node));
+  	prev_node=(struct node*)malloc(sizeof(struct node));
+  
+  	local_head=head;
+  	prev_node=head;
+  	
+    if(loc==1){
+  		head=local_head->next;
+      	free(local_head);
+    }
+  	else {
+      for(int indx=1;indx<loc-1;indx++){
+        prev_node=prev_node->next;
+      }
+      if(prev_node==NULL || prev_node->next==NULL) return 0;
+      local_head=prev_node;
+      prev_node->next=local_head->next;
+      free(local_head);
+    
+   	}
+  	return 0;
+}
+
 int main(){
   
   
@@ -122,9 +152,13 @@ int main(){
   //add a node at a location 
   add_in_middle(head,3);
   
+  //remove a node from a location
+  remove_a_node(head,2);
+  
   //print my all linked list
   print_my_ll(head);
   
   return 0;
 }
+
 
