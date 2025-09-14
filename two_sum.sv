@@ -14,6 +14,7 @@ module tb_top;
     if(assoc_q.size() > 0)begin
       out_q.push_back(assoc_q[0]);
       out_q.push_back(i);
+      return out_q;
     end
     else begin
       my_assoc_arr[i]=nums[i];
