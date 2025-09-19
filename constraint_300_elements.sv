@@ -41,6 +41,21 @@ class my_cls;
   
 endclass : my_cls
 
+      class A;
+    rand bit [2:0] arr[];
+    bit [2:0] vals[] = {0, 1, 2, 3, 4};
+
+    constraint c {
+        arr.size() == 300;
+        foreach (arr[i]) {
+            arr[i] inside {vals};
+            if (i < arr.size()-1 && arr[i] != 0) arr[i] != arr[i+1];
+        }
+        foreach (vals[i]) {
+            if (vals[i] != 0) arr.sum() with (int'(item == vals[i])) >= 40;
+        }
+    }
+endclass
 endpackage : my_pkg
 
 module tb_top;
